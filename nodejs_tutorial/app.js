@@ -23,6 +23,75 @@ console.log(count.adder(2, count.pi));
 /* ------------------------------------------------------------------------------------ */
 
 
+/*
+// core modules "fs", which can be use to read and write files of system
+var fs = require('fs');
+
+// which read the file before the below code as it is "Sync"
+// blocking code
+// read the file and encoding type as we are dealing with binary data
+
+var readme = fs.readFileSync('./readme.md', 'utf-8');
+// console.log(readme);
+
+//first parameter is where we want the file to be written
+//second parameter is the data we want to write to first parameter
+fs.writeFileSync('writeMe.md', readme);
+*/
+
+// Async file read and write
+/*var fs = require("fs");
+
+ 
+// for async we need to write a callback function to fire when the process is completed
+// and that is the third parameter in this method, and this callback function can take
+// two parameter i.e., "err" if there is a problem in this method and
+// second is "data" that we retrive that we read from the file
+
+fs.readFile("readme.md", "utf-8", function (err, data) {
+  // console.log(data);
+  fs.writeFile("write.md", data, function (err, result) {
+    if (err) console.log("error", err);
+  });
+});
+*/
+
+/* ------------------------------------------------------------------------------------ */
+
+
+// create and remove directories
+var fs = require('fs');
+
+// passing the file_name to delete
+/*
+    fs.unlink('write.md', function (err, result) {
+        if (err) console.log("error", err);
+    });
+*/
+// creating 'new' directory
+    // fs.mkdirSync('new');
+
+// deleting 'new' directory
+    // fs.rmdirSync('new');
+
+// Async
+/*
+fs.mkdir('new', function() {
+    fs.readFile('readme.md', 'utf-8', function(err, data) {
+        fs.writeFile('./new/write.md', data, function(err, result) {
+            if (err) console.log("error", err);
+        });
+    });
+});
+*/
+fs.unlink('./new/write.md', function() {
+    fs.rmdir('new', function(){});
+});
+
+
+/* ------------------------------------------------------------------------------------ */
+
+
 // core module
 
 /* whatever written on the module 
@@ -48,7 +117,7 @@ myEmitter.on("someEvent", function (msg) {
 
 // emitting the event
 // 'The event was emitted' is the parameter that passed in the callback function
-myEmitter.emit("someEvent", 'The event was emitted');
+myEmitter.emit("someEvent", "The event was emitted");
 
 /*
 event was emitted logged to the console of the terminal and that's because
@@ -67,11 +136,11 @@ and it logs the message to the console
 /*
 allows to inherit certain things from objects built onto nodejs or other objects
 */
-var util = require('util');
+var util = require("util");
 
 // creating a new object constructor
-var Person = function(name) {
-  this.name = name;   // whenever we create a new person we need to pass it through "name"
+var Person = function (name) {
+  this.name = name; // whenever we create a new person we need to pass it through "name"
 };
 
 // inheriting the event emitter
@@ -80,24 +149,24 @@ the first thing pass through is the object constructor that we want to inherit
 and the thing we want to inherit i.e., "events.EventEmitter"
 Now the "Person" constructor is going to be able to have custom events attached to it
 */
-util.inherits(Person, events.EventEmitter)
+util.inherits(Person, events.EventEmitter);
 
-var tom = new Person('tom');
-var jerrry = new Person('jerry');
-var spike = new Person('spike');
+var tom = new Person("tom");
+var jerrry = new Person("jerry");
+var spike = new Person("spike");
 
 // storing the above names in array
 var people = [tom, jerrry, spike];
 
-people.forEach(function(person) {
-  person.on('speak', function(msg) {
-    console.log(person.name + ' said: ' + msg);
+people.forEach(function (person) {
+  person.on("speak", function (msg) {
+    console.log(person.name + " said: " + msg);
   });
 });
 
-tom.emit('speak', "hey! bro I'm tom");
-jerrry.emit('speak', "hey! bro I'm jerrry");
-spike.emit('speak', "hey! bro I'm spike");
+tom.emit("speak", "hey! bro I'm tom");
+jerrry.emit("speak", "hey! bro I'm jerrry");
+spike.emit("speak", "hey! bro I'm spike");
 
 
 /* ------------------------------------------------------------------------------------ */
