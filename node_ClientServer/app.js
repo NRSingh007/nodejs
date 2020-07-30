@@ -18,7 +18,7 @@ myReadStream.on("data", function (chunk) {
   myWriteStream.write(chunk);
 });
 */
-// PIPES, which is a method
+// PIPE is buffer/stream method, which is a method
 // piping readable to writable Stream, we can't pipe from writable Stream because we cann't read from it
 // myReadStream.pipe(myWriteStream);
 /*
@@ -41,6 +41,7 @@ var server = http.createServer(function (req, res) {
 */
 
 // serving json data
+/*
 var server = http.createServer(function (req, res) {
   console.log("Request was made: " + req.url);
   res.writeHead(200, { "Content-Type": "application/json" }); // first parameter is "status" and second is "passing an object" with its value
@@ -51,6 +52,28 @@ var server = http.createServer(function (req, res) {
   };
 
   res.end(JSON.stringify(myObj));
+});
+*/
+
+// Basic Routing
+
+var server = http.createServer(function (req, res) {
+  console.log("Request was made: " + req.url);
+  // checking the request of client
+  if (req.url === "/home" || req.url === "/") {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    fs.createReadStream(__dirname + "/index.html").pipe(res);
+  } else if (req.url === "/contact") {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    fs.createReadStream(__dirname + "/contact.html").pipe(res);
+  } else if (req.url === "/api/cred") {
+    var cred = [{ name: "naorem", age: 25, job: "dev" }];
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify(cred));
+  } else {
+    res.writeHead(404, { "Content-Type": "text/html" });
+    fs.createReadStream(__dirname + "/404.html").pipe(res);
+  }
 });
 
 const PORT = 3000;
