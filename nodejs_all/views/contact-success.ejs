@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/styles.css" type="text/css" />
+  </head>
+  <body>
+    <%-include('partials/nav.ejs');%>
+    <h1>Contact Us</h1>
+    <p>Naorem69</p>
+
+    <p>You've contacted <%= data.who %> of <%= data.department %> department</p>
+    <p>We'll contact you soon @ <%= data.email %> </p>
+  </body>
+</html>

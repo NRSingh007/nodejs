@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/styles.css" type="text/css" />
+  </head>
+  <body>
+    <%-include('partials/nav.ejs');%>
+    <h1>Contact Us</h1>
+    <p>Naorem69</p>
+
+    <form id="contact-form" method="POST" action="/contact">
+      <label for="who">Who do you want Contact?</label>
+      <input type="text" name="who" value="<%= qs.person %>">   <!--value is set to prepopulate the fill-->
+      <label for="department">Which department?</label>
+      <input type="text" name="department" value="<%= qs.dept %>">
+      <label for="email">Your email</label>
+      <input type="email" name="email" value="<%= qs.email %>">
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
