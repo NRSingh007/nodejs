@@ -7,7 +7,7 @@ var mongoose = require("mongoose");
 
 mongoose
   .connect(
-    "mongodb+srv://clientn88:qwerty@1@passportlogin.kcrmy.mongodb.net/<dbname>?retryWrites=true&w=majority",
+    "mongodb+srv://user:<password>@passportlogin.kcrmy.mongodb.net/<dbname>?retryWrites=true&w=majority",
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => console.log(`Mongo Db is connected`))
